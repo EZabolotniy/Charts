@@ -555,6 +555,7 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
                 lastHighlighted = h
                 highlightValue(h, callDelegate: true)
             }
+            delegate?.touchEnded?()
         }
     }
     
@@ -799,6 +800,8 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
                 _outerScrollView?.nsuiIsScrollEnabled = true
                 _outerScrollView = nil
             }
+            
+            delegate?.touchEnded?()
         }
     }
     
@@ -1287,7 +1290,7 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
 
     /// Centers the viewport to the specified y-value on the y-axis.
     /// This also refreshes the chart by calling setNeedsDisplay().
-    /// 
+    ///
     /// - Parameters:
     ///   - yValue:
     ///   - axis: - which axis should be used as a reference for the y-axis
@@ -1307,7 +1310,7 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
 
     /// This will move the left side of the current viewport to the specified x-value on the x-axis, and center the viewport to the specified y-value on the y-axis.
     /// This also refreshes the chart by calling setNeedsDisplay().
-    /// 
+    ///
     /// - Parameters:
     ///   - xValue:
     ///   - yValue:
@@ -1674,7 +1677,7 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
     
     /// If set to true, highlighting per dragging over a fully zoomed out chart is enabled
     /// You might want to disable this when using inside a `NSUIScrollView`
-    /// 
+    ///
     /// **default**: true
     @objc open var isHighlightPerDragEnabled: Bool
     {

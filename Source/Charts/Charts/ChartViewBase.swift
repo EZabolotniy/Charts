@@ -45,6 +45,8 @@ public protocol ChartViewDelegate
 
     // Callbacks when Animator stops animating
     @objc optional func chartView(_ chartView: ChartViewBase, animatorDidStop animator: Animator)
+    
+    @objc optional func touchEnded()
 }
 
 open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
@@ -417,7 +419,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     }
 
     /// Highlights the values at the given indices in the given DataSets. Provide
-    /// null or an empty array to undo all highlighting. 
+    /// null or an empty array to undo all highlighting.
     /// This should be used to programmatically highlight values.
     /// This method *will not* call the delegate.
     @objc open func highlightValues(_ highs: [Highlight]?)
@@ -960,7 +962,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     
     /// Deceleration friction coefficient in [0 ; 1] interval, higher values indicate that speed will decrease slowly, for example if it set to 0, it will stop immediately.
     /// 1 is an invalid value, and will be converted to 0.999 automatically.
-    /// 
+    ///
     /// **default**: true
     @objc open var dragDecelerationFrictionCoef: CGFloat
     {
